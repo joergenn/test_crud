@@ -1,10 +1,11 @@
 import express from "express"
-import {sequelize} from "./database/connection.js"
+import 'dotenv/config'
 import addressesRouter from "./routes/addresses.js"
 import usersRouter from "./routes/users.js"
+import {sequelize} from "./database/connection.js"
 
 const app = express()
-const port = 3000
+const port = process.env.PORT
 
 app.use(express.json())
 
