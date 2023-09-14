@@ -1,8 +1,7 @@
-const express = require("express")
-const sequelize = require("./database/connection")
-const models = require("./database/models")
-const addressesRouter = require("./routes/addresses")
-const usersRouter = require("./routes/users")
+import express from "express"
+import {sequelize} from "./database/connection.js"
+import addressesRouter from "./routes/addresses.js"
+import usersRouter from "./routes/users.js"
 
 const app = express()
 const port = 3000

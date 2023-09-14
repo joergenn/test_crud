@@ -1,7 +1,7 @@
-const sequelize = require("./connection")
-const { Sequelize, DataTypes } = require("sequelize");
+import {sequelize }from "./connection.js"
+import {Sequelize, DataTypes} from "sequelize";
 
-const Address = sequelize.define('address', {
+export const Address = sequelize.define('address', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -55,7 +55,7 @@ const Address = sequelize.define('address', {
     timestamps: false
 })
 
-const User = sequelize.define('users', {
+export const User = sequelize.define('users', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -116,8 +116,3 @@ User.hasMany(Address, {
     onDelete: "CASCADE"
 })
 Address.belongsTo(User)
-
-module.exports = { 
-    User,
-    Address
-}

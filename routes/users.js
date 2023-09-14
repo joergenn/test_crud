@@ -1,8 +1,12 @@
-const express = require("express")
-const fs = require('fs').promises
-const path = require('path')
+import express from "express"
+import {promises as fs} from "fs" 
+import path from "path"
+import { fileURLToPath } from 'url';
+import {createUser, getAllUsers, getUserById, deleteUser, updateUser} from "../database/handler.js"
+
 const router = express.Router()
-const {createUser, getAllUsers, getUserById, deleteUser, updateUser} = require("../database/handler")
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 router.get("/", async (req, res) => {
     const users = await getAllUsers()
@@ -104,4 +108,4 @@ router.put("/:id", async(req, res) => {
     }
 })
 
-module.exports = router
+export default router

@@ -1,6 +1,7 @@
-const express = require("express")
+import express from "express"
+import {createAddress, getAllAddresses, getAddressById, deleteAddress, updateAddress} from "../database/handler.js"
+
 const router = express.Router()
-const {createAddress, getAllAddresses, getAddressById, deleteAddress, updateAddress} = require("../database/handler")
 
 router.get("/", async (req, res) => {
     const addresses = await getAllAddresses()
@@ -72,4 +73,4 @@ router.put("/:id", async(req, res) => {
     }
 })
 
-module.exports = router
+export default router

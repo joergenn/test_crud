@@ -1,8 +1,7 @@
-const sequelize = require('./connection')
-const models = require('./models')
+import {User, Address} from "./models.js"
 
-const getAllUsers = async() => {
-    let users = await models.User.findAll()
+export const getAllUsers = async() => {
+    let users = await User.findAll()
     users = users.map(user => {
         const {image: image, ...rest} = user.dataValues
         return rest
@@ -11,35 +10,35 @@ const getAllUsers = async() => {
     return users
 }
 
-const getAllAddresses = async() => {
-    const addresses = await models.Address.findAll()
+export const getAllAddresses = async() => {
+    const addresses = await Address.findAll()
     return addresses
 }
 
-const getUserById = async(id) => {
-    const user = await models.User.findByPk(id)
+export const getUserById = async(id) => {
+    const user = await User.findByPk(id)
     return user
 }
 
-const getAddressById = async(id) => {
-    const address = await models.Address.findByPk(id)
+export const getAddressById = async(id) => {
+    const address = await Address.findByPk(id)
     return address
 }
 
-const createUser= async(body) => {
+export const createUser= async(body) => {
     console.log(body)
-    const user = await models.User.create(body)
+    const user = await User.create(body)
     return user
 }
 
-const createAddress = async(body) => {
+export const createAddress = async(body) => {
     console.log(body)
-    const address = await models.Address.create(body)
+    const address = await Address.create(body)
     return address
 }
 
-const deleteUser = async(id) => {
-    const status = await models.User.destroy({
+export const deleteUser = async(id) => {
+    const status = await User.destroy({
         where: {
             id: id
         }
@@ -47,8 +46,8 @@ const deleteUser = async(id) => {
     return status
 }
 
-const deleteAddress = async(id) => {
-    const status = await models.Address.destroy({
+export const deleteAddress = async(id) => {
+    const status = await Address.destroy({
         where: {
             id: id
         }
@@ -56,8 +55,8 @@ const deleteAddress = async(id) => {
     return status
 }
 
-const updateUser = async(id, body) => {
-    const status = await models.User.update(body, {
+export const updateUser = async(id, body) => {
+    const status = await User.update(body, {
         where: {
             id: id
         }
@@ -65,8 +64,8 @@ const updateUser = async(id, body) => {
     return parseInt(status)
 }
 
-const updateAddress = async(id, body) => {
-    const status = await models.Address.update(body, {
+export const updateAddress = async(id, body) => {
+    const status = await Address.update(body, {
         where: {
             id: id
         }
@@ -74,16 +73,5 @@ const updateAddress = async(id, body) => {
     return parseInt(status)
 }
 
-module.exports = {
-    createUser,
-    createAddress,
-    getAllUsers,
-    getAllAddresses,
-    getUserById,
-    getAddressById,
-    deleteUser,
-    deleteAddress,
-    updateUser,
-    updateAddress
-}
+
 
